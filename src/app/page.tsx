@@ -1,12 +1,12 @@
 import { desc } from "drizzle-orm";
 import Image from "next/image";
 
-import Footer from "@/components/shared/footer";
-import ProdutoList from "@/components/shared/produto-lista";
-import { Header } from "@/components/shared/header";
+import CategorySelector from "@/components/common/category-selector";
+import Footer from "@/components/common/footer";
+import { Header } from "@/components/common/header";
+import ProductList from "@/components/common/product-list";
 import { db } from "@/db";
 import { productTable } from "@/db/schema";
-import CategoriaSeletor from "@/components/shared/categoria-seletor";
 
 const Home = async () => {
   const products = await db.query.productTable.findMany({
@@ -37,10 +37,10 @@ const Home = async () => {
           />
         </div>
 
-        <ProdutoList products={products} title="Mais vendidos" />
+        <ProductList products={products} title="Mais vendidos" />
 
         <div className="px-5">
-          <CategoriaSeletor categories={categories} />
+          <CategorySelector categories={categories} />
         </div>
 
         <div className="px-5">
@@ -54,7 +54,7 @@ const Home = async () => {
           />
         </div>
 
-        <ProdutoList products={newlyCreatedProducts} title="Novos produtos" />
+        <ProductList products={newlyCreatedProducts} title="Novos produtos" />
         <Footer />
       </div>
     </>
